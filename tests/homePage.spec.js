@@ -18,7 +18,7 @@ test.describe('Homepage Form Tests', () => {
     await homePage.navigate();
   });
 
-  test('Test ID-1 should fill out the required fields and save details', async () => {
+  test('Test ID-1 Verify fill out the required fields and save', async () => {
     // Use the page object methods to interact with the page
     await homePage.fillName(testData.name);
 
@@ -53,7 +53,7 @@ test.describe('Homepage Form Tests', () => {
   expect(isIconVisible).toBe(true);
   });
   // Add more tests if needed
-  test('Test ID-2 should fill out the required fields and save details', async () => {
+  test('Test ID-2 Verify unsucsessful save with invalid email', async () => {
     // Use the page object methods to interact with the page
     await homePage.fillName(testData.name);
 
@@ -87,6 +87,13 @@ test.describe('Homepage Form Tests', () => {
   const isIconVisible = await homePage.isCheckCircleIconVisible();
   expect(isIconVisible).toBe(true);
   });
+
+  test('Test ID-3 Verify the page title', async () => {
+    const title = await homePage.getPageTitle();
+    expect(title).toBe('Brella | Simple event networking');
+    
+  
+      });
 });
 
 

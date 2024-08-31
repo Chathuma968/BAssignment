@@ -63,6 +63,10 @@ class homePage {
   async isCheckCircleIconVisible() {
     return await this.checkCircleIcon.isVisible(); // Return true if the icon is visible
   }
+  
+  async getPageTitle() {
+    return await this.page.title(); // Method to return the page title
+  }
 
   
   }
