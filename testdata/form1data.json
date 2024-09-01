@@ -1,7 +1,8 @@
 {
-    "name": "John Doe",
-    "email": "abc@gmail.com",
-    "InputNumber": "5",
-    "Year": "2024"
-    
-  }
+  "name": "John Doe",
+  "email": "abc@gmail.com",
+  "invalidemail": "abc",
+  "InputNumber": "5",
+  "Year": "2024"
+  
+}

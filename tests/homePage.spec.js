@@ -18,7 +18,7 @@ test.describe('Homepage Form Tests', () => {
     await homePage.navigate();
   });
 
-  test('Test ID-1 Verify fill out the required fields and save', async () => {
+  test('TestCase 01: Verify succesfull save', async () => {
     // Use the page object methods to interact with the page
     await homePage.fillName(testData.name);
 
@@ -53,7 +53,7 @@ test.describe('Homepage Form Tests', () => {
   expect(isIconVisible).toBe(true);
   });
   // Add more tests if needed
-  test('Test ID-2 Verify unsucsessful save with invalid email', async () => {
+  test('TestCase 02: Verify unsuccesfull save with emal validation', async () => {
     // Use the page object methods to interact with the page
     await homePage.fillName(testData.name);
 
@@ -62,33 +62,27 @@ test.describe('Homepage Form Tests', () => {
     expect(nameValue).toBe(testData.name);
 
     // Fill in the email field
-    await homePage.fillEmail(testData.email);
-    const emailValue = await homePage.getEmailValue();
-    expect(emailValue).toBe(testData.email);
+    await homePage.fillEmail(testData.invalidemail);
+    const emailValue2 = await homePage.getEmailValue();
+    expect(emailValue2).toBe(testData.invalidemail);
 
     // Click the submit button
     await homePage.clickSubmit();
 
-    // Verify the submit button is disabled
+    // Verify the submit button is still enabled
     const isButtonDisabled = await homePage.isSubmitButtonDisabled();
-    expect(isButtonDisabled).toBe(true);
+    expect(isButtonDisabled).toBe(false);
 
-    // Verify the result is displayed correctly
-    const resultText = await homePage.getResultText();
-    expect(resultText.name).toBe(`name: ${testData.name}`);
-   // expect(resultText.switch).toBe('switch: false');
-    //expect(resultText.email).toBe(`email: ${testData.email}`);
+    // Verify the Error validation message
+    const validationMessageText = await homePage.getValidationMessageText();
+    expect(validationMessageText).toBe("email doesn't have @"); // Assert the validation message text
 
-    // Verify the success message
-  const messageText = await homePage.getMessageText();
-  expect(messageText).toBe('cool, it is done');
-
-  // Verify the check-circle icon is visible
-  const isIconVisible = await homePage.isCheckCircleIconVisible();
-  expect(isIconVisible).toBe(true);
+    // Verify the check-circle icon is visible
+    const isIconVisible = await homePage.verifyValidationIconVisible();
+    expect(isIconVisible).toBe(true); // Assert that the icon is visible
   });
 
-  test('Test ID-3 Verify the page title', async () => {
+  test('TestCase 03: Verify the page title', async () => {
     const title = await homePage.getPageTitle();
     expect(title).toBe('Brella | Simple event networking');
     
